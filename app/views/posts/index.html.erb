@@ -1,6 +1,5 @@
 <div><% @posts.each do |post| %>
-<%= post.image %>
+<%=link_to (image_tag post.image), post_path(post) %>
 <%= post.caption %>
-<%= image_tag post.image %>
 <% end %>
 </div>
