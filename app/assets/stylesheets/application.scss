@@ -1,2 +1,51 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "font-awesome";
+
+ .posts-form {
+   font-size: 16px;
+ }
+
+
+ .input-group-addon {
+    background-color: white;
+}
+
+// Remove bullet points from navbar items
+ .nav-item {
+    list-style-type: none;
+}
+
+.navbar {
+    border-bottom: 1px solid grey;
+}
+
+// Size of the logo on navbar
+ .navbar-brand,
+ .nav-icon {
+    font-size: 32px;
+    margin-left: 5%;
+}
+
+ .nav-search {
+    margin-left: 30%;
+    margin-top: 15px;
+    // width: 200px;
+    // display: inline-block;
+    // justify-content: center;
+    // flex-wrap: wrap;
+    // text-align: center;
+    // padding: 0;
+}
+
+.navbar-right {
+  margin-right: 5%;
+}
+
+.form-control {
+  border-left: none;
+}
+
+#basic-addon1 {
+  border-right: none;
+}
