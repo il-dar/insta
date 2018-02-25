@@ -1,4 +1,7 @@
 <div>
-  <%= image_tag @post.image %>
-  <%= link_to "Edit", edit_post_path(@post) %>
+  <%= image_tag @post.image, width: 600 %>
+  <div class="edit-image">
+
+    <%= link_to "Edit", edit_post_path(@post) %>
+  </div>
 </div>

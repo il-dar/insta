@@ -1,8 +1,9 @@
 <%= simple_form_for @post do |f| %>
-  <%= image_tag @post.image %>
+  <%= image_tag @post.image, width: 600 %>
   <%= f.input :image %>
   <%= f.input :caption %>
   <%= f.button :submit %>
 <% end %>
 
 <%= link_to "Delete Post", post_path(@post), method: :delete %>
+<%= link_to "Cancel", post_path(@post) %>

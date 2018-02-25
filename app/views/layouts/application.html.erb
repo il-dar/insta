@@ -3,7 +3,7 @@
   <head>
     <title>Instagram</title>
     <%= csrf_meta_tags %>
-
+    <%= javascript_pack_tag 'hello_react' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -31,6 +31,10 @@
       <li class="nav-item">
         <a class="nav-link disabled nav-icon" href="#"><%= fa_icon "user"  %></a>
       </li>
+      <li id='input'>
+
+      </li>
+
     </ul>
 </nav>
 

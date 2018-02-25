@@ -4,8 +4,7 @@
     <div class="row justify-content-md-center">
       <% group.each do |post| %>
       <div class="col-md-3 indeximage">
-        <%=link_to (image_tag post.image, width: 300), post_path(post) %>
-        <!-- <div><%= post.caption %></div> -->
+        <%=link_to (image_tag post.image, width: 300), post_path(post) unless post.nil? %>
       </div>
     <% end %>
   </div>
