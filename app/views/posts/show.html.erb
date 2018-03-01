@@ -1,7 +1,13 @@
 <div>
-  <%= image_tag @post.image, width: 600 %>
+  <a><%= @post.user.user_name %></a>
+    <div>
+      <%= image_tag @post.image, width: 600 %>
+    </div>
   <div class="edit-image">
-
+    <% if @post.user.id == current_user.id %>
     <%= link_to "Edit", edit_post_path(@post) %>
+    <% else %>
+    <%= link_to "Back to Posts", posts_path %>
+    <% end %>
   </div>
 </div>

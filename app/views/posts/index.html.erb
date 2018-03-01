@@ -5,6 +5,8 @@
       <% group.each do |post| %>
       <div class="col-md-3 indeximage">
         <%=link_to (image_tag post.image, width: 300), post_path(post) unless post.nil? %>
+        <%= post.user.user_name unless post.nil? %>
+        <%= post.caption unless post.nil? %>
       </div>
     <% end %>
   </div>

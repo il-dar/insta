@@ -7,7 +7,6 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <a class="navbar-brand" href="/"><%= fa_icon "camera-retro"  %> | ICON</a>
   <div class="search">
@@ -28,18 +27,52 @@
       <li class="nav-item">
         <a class="nav-link nav-icon" href="#"><%= fa_icon "heart"  %></a>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link disabled nav-icon" href="#"><%= fa_icon "user"  %></a>
+        <!-- <div class="dropdown"> -->
+        <!-- <a class="nav-link disabled nav-icon" href="#"><%= fa_icon "user"  %></a> -->
+          <!-- <a class="dropdown-toggle nav-link nav-icon" type="button" data-toggle="dropdown"><%= fa_icon "user"  %></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">HTML</a></li>
+              <li><a href="#">CSS</a></li>
+              <li><a href="#">JavaScript</a></li>
+            </ul>
+          </div> -->
+          <div class="dropdown">
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdownMenuLink"><%= fa_icon "user"  %></a>
+            <ul class="dropdown-menu">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+            </ul>
+          </div>
       </li>
-      <li id='input'>
+      <li class="nav-item">
 
       </li>
 
     </ul>
+    <ul class="hmenu">
+      <% if user_signed_in? %>
+      <li>
+        <%= link_to('Edit registration', edit_user_registration_path) %>
+      </li>
+      <li>
+      <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+      </li>
+    </ul>
 </nav>
-
-  <body>
-    <%= yield %>
-  </body>
-
+<body>
+  <div>
+    <% else %>
+    <%= link_to('Login', new_user_session_path)  %>
+  </div>
+  <div>
+    <%= link_to('Register', new_user_registration_path)  %>
+    <% end %>
+  </div>
+  <%= yield %>
+</body>
 </html>

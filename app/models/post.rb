@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
+  belongs_to :user
   validates :image, presence: true
-  has_attached_file :image, styles: {:medium => "640"}
-  validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  validates :user_id, presence: true
+  has_attached_file :image, style: {:medium => "640"}
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
 end
