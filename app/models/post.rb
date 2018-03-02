@@ -4,5 +4,6 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   has_attached_file :image, style: {:medium => "640"}
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-
+  has_many :comments, dependent: :destroy
+  
 end

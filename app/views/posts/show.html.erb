@@ -3,11 +3,25 @@
     <div>
       <%= image_tag @post.image, width: 600 %>
     </div>
+    <div class="comments">
+      <% if @post.comments %>
+        <% @post.comments.each do |comment| %>
+        <div>
+          <b><%= comment.user.user_name %></b>
+          <%= comment.content %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
   <div class="edit-image">
+    <%= form_for [@post, @post.comments.new] do |comment| %>
+    <%= comment.text_field :content, placeholder: "Add a comment" %>
+    <% end %>
     <% if @post.user.id == current_user.id %>
     <%= link_to "Edit", edit_post_path(@post) %>
     <% else %>
     <%= link_to "Back to Posts", posts_path %>
     <% end %>
+
   </div>
 </div>
