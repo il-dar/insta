@@ -14,8 +14,10 @@ end
 def create
   @post = current_user.posts.build(post_params)
   if @post.save
-     flash[:success] = "Your post has been created!"
-     redirect_to posts_path
+     respond_to do |format|
+       format.html {redirect_to posts_path}
+       format.js
+     end 
    else
      flash[:alert] = "Your new post couldn't be created!  Please check the form."
      render :new
