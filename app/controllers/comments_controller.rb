@@ -19,7 +19,10 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
 
     if @comment.save
-      redirect_to root_path
+      respond_to do |format|
+       format.html { redirect_to root_path }
+       format.js
+      end
     else
        flash[:alert] = "Comment could not be saved"
        redirect_to root_path
@@ -32,10 +35,15 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = @post.comment.find(params[:id])
+    @comment = @post.comments.find(params[:id])
 
-    @comment.destroy
-    redirect_to root_path
+    if @comment.user_id == current_user.id
+      @comment.delete
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+      end
+    end
   end
 
   private

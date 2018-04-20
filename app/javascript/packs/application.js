@@ -7,4 +7,20 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-console.log('Hello World from Ildar')
+import React from 'react';
+import { render } from 'react-dom';
+import SampleComponent from '../components/SampleComponent';
+import Comment from '../components/Comment'
+import WebpackerReact from 'webpacker-react'
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // const container = document.body.appendChild(document.createElement('div'));
+  // console.log('container', container)
+  // const node = document.getElementById('comments_data')
+  // const data = JSON.parse(node.getAttribute('data'))
+  render(
+    <Comment/>,
+    document.body.appendChild(document.createElement('div')),
+  )
+});

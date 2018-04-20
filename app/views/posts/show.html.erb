@@ -3,11 +3,11 @@
     <div>
       <%= image_tag @post.image, width: 600 %>
     </div>
-    <div class="comments" id="comments_#{post.id}">
+    <div class="comments" id="comments_<%@post.id%>">
         <% if @post.comments %>
           <%= render @post.comments, post: @post %>
         <% end %>
-      </div>
+    </div>
     </div>
   <div class="comment-form">
     <h2>Add a Comment</h2>
@@ -19,6 +19,7 @@
     <% else %>
     <%= link_to "Back to Posts", posts_path %>
     <% end %>
-
   </div>
+  <!-- <%= javascript_pack_tag 'application' %>
+  <%= react_component 'application', {props: @post.comments } %> -->
 </div>

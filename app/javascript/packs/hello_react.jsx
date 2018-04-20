@@ -4,22 +4,13 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
 
-const NewPost = props => (
-  <h2> Make a new Post {props.name}!</h2>
-)
-
-NewPost.defaultProps = {
-  name: 'Test User'
+class Hello extends React.Component {
+  render() {
+    return <div>Hello {this.props.name}!</div>
+  }
 }
 
-NewPost.propTypes = {
-  name: PropTypes.string
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <NewPost/>,
-    document.getElementById("root"))
+document.addEventListener("DOMContentLoaded", e => {
+  ReactDOM.render(<Hello name="React" />, document.body.appendChild(document.createElement('div')))
 })

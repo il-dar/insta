@@ -1,11 +1,16 @@
 <div>
 
   <% @post.comments.each do |comment| %>
+  <%= content_tag :div,
+    id: "comments_data1",
+    name: comment.user.user_name,
+    data: comment.to_json do %>
+  <% end %>
     <b><%= comment.user.user_name %></b>
     <%= comment.content %>
       <% if comment.user == current_user %>
-        <%= link_to "Delete", post_comment_path(@post, comment), method: :delete%>
+        <%= link_to "Delete", post_comment_path(@post, comment), method: :delete, remote: true%>
       <% end %>
-      <% end %>
-
+      <!-- <%= react_component("Comment", {commentdata: comment}) %> -->
+  <% end %>
 </div>
