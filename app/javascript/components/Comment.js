@@ -1,34 +1,35 @@
 import React from 'react';
 
-export default class Comment extends React.Component{
+class SingleComment extends React.Component{
   render() {
-    const node = document.getElementById('comments_data1')
-    const data = JSON.parse(node.getAttribute('data'))
-    console.log(data)
     return (
       <div>
-        <h1 className = "comment"> {data.content} </h1>
-        <h1>{node.getAttribute('name')}</h1>
+      This comment number is {this.props.id}
+      <h2>
+      {this.props.content}
+      </h2>
       </div>
     )
   }
 };
 
-// class CommentList extends React.Component{
-//   render() {
-//     var commentData = this.props.data.map(function(comment, index){
-//       return (
-//         <Comment id={comment.user_id} />
-//       );
-//     });
-//     return (
-//       <div className="commentList">
-//         {commentData}
-//         Yeahhhh I am a CommentList.
-//       </div>
-//     );
-//   }
-// };
+export default class CommentList extends React.Component{
+
+  render() {
+  return(
+    <div>
+      hello
+      { this.props.data.map((comment) =>
+        <SingleComment
+        key={comment.id}
+        id={comment.id}
+        content={comment.content}
+        />
+      )}
+    </div>
+  )
+  }
+};
 //
 // class CommentForm extends React.Component{
 //   render() {

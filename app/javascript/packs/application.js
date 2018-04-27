@@ -15,12 +15,14 @@ import WebpackerReact from 'webpacker-react'
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // const container = document.body.appendChild(document.createElement('div'));
   // console.log('container', container)
-  // const node = document.getElementById('comments_data')
-  // const data = JSON.parse(node.getAttribute('data'))
+  const node = document.getElementById('comments_data')
+  const data = JSON.parse(node.getAttribute('data'))
   render(
-    <Comment/>,
+    <Comment
+    data={data}
+
+    />,
     document.body.appendChild(document.createElement('div')),
   )
 });
