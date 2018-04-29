@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 before_action :authenticate_user!
 before_action :users_post, only: [:update, :edit, :destroy]
+skip_before_action :verify_authenticity_token
 
 def index
   @posts = Post.all
@@ -17,7 +18,7 @@ def create
      respond_to do |format|
        format.html {redirect_to posts_path}
        format.js
-     end 
+     end
    else
      flash[:alert] = "Your new post couldn't be created!  Please check the form."
      render :new

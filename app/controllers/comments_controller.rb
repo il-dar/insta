@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :define_post
+  skip_before_action :verify_authenticity_token
 
   def show
 
@@ -20,8 +21,8 @@ class CommentsController < ApplicationController
 
     if @comment.save
       respond_to do |format|
-       format.html { redirect_to root_path }
-       format.js
+       format.html
+       format.json
       end
     else
        flash[:alert] = "Comment could not be saved"
