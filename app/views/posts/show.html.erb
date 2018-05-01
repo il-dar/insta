@@ -5,6 +5,7 @@
     </div>
     <%= content_tag :div,
     id: "comments_data",
+    content:  post_comments_path(@post),
     data: @post.comments.to_json do %>
     <% end %>
     <%= react_component('application')%>

@@ -18,10 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // console.log('container', container)
   const node = document.getElementById('comments_data')
   const data = JSON.parse(node.getAttribute('data'))
+  const postUrl = node.getAttribute('content')
   render(
     <Comment
     data={data}
-
+    postUrl={postUrl}
     />,
     document.body.appendChild(document.createElement('div')),
   )

@@ -1,11 +1,12 @@
 import React from 'react';
 
 
-class NewComment extends React.Component{
+class NewCommentForm extends React.Component{
   handleClick(){
     var content = this.refs.comment.value; //this is available because we did bind(this) on the button render
+    var postUrl = this.props.postUrl
     $.ajax({
-    url: "9/comments",
+    url: postUrl,
     type: "POST",
     data: { comment: { content: content } },
     success: response => {
@@ -36,9 +37,10 @@ class SingleComment extends React.Component{
   }
 };
 
-export default class CommentList extends React.Component{
+class CommentList extends React.Component{
 
   render() {
+    const postUrl = this.props.postUrl
   return(
     <div>
       hello
@@ -49,7 +51,7 @@ export default class CommentList extends React.Component{
         content={comment.content}
         />
       )}
-      <NewComment />
+      <NewCommentForm postUrl={postUrl}/>
     </div>
   )
   }
@@ -67,10 +69,14 @@ export default class CommentList extends React.Component{
 //
 export default class CommentBox extends React.Component{
   render() {
+    const data = this.props.data
+    const postUrl = this.props.postUrl
     return (
       <div className="commentBox">
-        We created a React div component! WOO!
-          <CommentList />
+          <CommentList
+          data={data}
+          postUrl={postUrl}
+          />
       </div>
     );
   }
