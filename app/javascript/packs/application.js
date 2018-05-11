@@ -9,20 +9,23 @@
 
 import React from 'react';
 import { render } from 'react-dom';
+import ReactDOM from 'react-dom'
 import SampleComponent from '../components/SampleComponent';
 import Comment from '../components/Comment'
 import WebpackerReact from 'webpacker-react'
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
   // console.log('container', container)
   const node = document.getElementById('comments_data')
-  const data = JSON.parse(node.getAttribute('data'))
+  const current_user = node.getAttribute('current_user')
   const postUrl = node.getAttribute('content')
+
   render(
     <Comment
-    data={data}
     postUrl={postUrl}
+    current_user={current_user}
     />,
     document.body.appendChild(document.createElement('div')),
   )

@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
   end
 
   def index
-
+    @comments = @post.comments
+    # render component: 'Comment', props: {postUrl: post_comments_path(@post), data: 'views/comments.index.json.jbuilder'}
   end
 
   def new
@@ -21,8 +22,9 @@ class CommentsController < ApplicationController
 
     if @comment.save
       respond_to do |format|
-       format.html
-       format.json
+       format.html {head :ok}
+       format.json {render json: @comment.to_json}
+       format.js {head :ok}
       end
     else
        flash[:alert] = "Comment could not be saved"

@@ -1,3 +1,4 @@
+
 <div>
   <a><%= @post.user.user_name %></a>
     <div>
@@ -6,21 +7,22 @@
     <%= content_tag :div,
     id: "comments_data",
     content:  post_comments_path(@post),
-    data: @post.comments.to_json do %>
+    current_user: current_user.user_name do %>
     <% end %>
+    <div class="comments-raw">
+    </div>
     <%= react_component('application')%>
 
+<!-- , props: {content: post_comments_path(@post), data: @post.comments.to_json}) -->
 </div>
   <div class="comment-form">
-    <h2>Add a Comment</h2>
-    <%= form_for([@post, @post.comments.new], remote: true) do |f| %>
-    <%= f.text_field :content, placeholder: "Add a comment", class: "comment_content", id: "comment_content_#{@post.id}" %>
-    <% end %>
     <% if @post.user.id == current_user.id %>
     <%= link_to "Edit", edit_post_path(@post) %>
     <% else %>
-    <%= link_to "Back to Posts", posts_path %>
     <% end %>
+    <div>
+    <%= link_to "Back to Posts", posts_path %>
+    <div>
   </div>
 
 </div>
