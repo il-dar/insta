@@ -4,6 +4,9 @@
     <div>
       <%= image_tag @post.image, width: 600 %>
     </div>
+    <%= div_for @post do %>
+    <%=  render partial: "likes/button", locals: {post: @post} %>
+    <% end  %>
     <%= content_tag :div,
     id: "comments_data",
     content:  post_comments_path(@post),
