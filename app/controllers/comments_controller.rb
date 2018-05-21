@@ -44,8 +44,12 @@ class CommentsController < ApplicationController
       @comment.delete
       respond_to do |format|
         format.html { redirect_to root_path }
+        format.json {render json: @comment.to_json}
         format.js
       end
+    else
+      flash[:alert] = "Comment could not be deleted"
+      format.json { render json: @reservation.errors }
     end
   end
 

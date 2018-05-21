@@ -15,8 +15,8 @@
     <div class="comments-raw">
     </div>
     <%= react_component('application')%>
+    <!-- , props: {content: post_comments_path(@post), data: @post.comments.to_json}) -->
 
-<!-- , props: {content: post_comments_path(@post), data: @post.comments.to_json}) -->
 </div>
   <div class="comment-form">
     <% if @post.user.id == current_user.id %>

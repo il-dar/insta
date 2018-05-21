@@ -4,11 +4,7 @@ import ReactDOM from 'react-dom'
 import WebpackerReact from 'webpacker-react'
 
 class NewCommentForm extends React.Component{
-  // getData(){
-  //   $.ajax({
-  //
-  //   })
-  // }
+
   handleClick(){
     var content = this.refs.comment.value; //this is available because we did bind(this) on the button render
     var postUrl = this.props.postUrl
@@ -25,56 +21,86 @@ class NewCommentForm extends React.Component{
   render(){
     return(
       <div>
-        <input ref='comment' placeholder='Comment' />
+        <input ref='comment' placeholder='Leave a Comment!' />
           <button onClick={this.handleClick.bind(this)}>Submit</button>
       </div>
     )
   }
 }
 
-// class SingleComment extends React.Component{
-//   render() {
-//     return (
-//       <div>
-//       This comment number is {this.props.id}
-//       <h2>
-//       {this.props.content}
-//       </h2>
-//       </div>
-//     )
-//   }
-// };
-
 class CommentList extends React.Component{
-// componentWillReceiveProps (props){
-//  // this.doSomething(props) // To some function.
-//  this.setState({data: props}) // This will update your component.
-// }
+
+    // componentDidMount(){
+    //   this.setState({
+    //     data: this.props.data
+    //   })
+    // }
+    // /posts/:post_id/comments/:id
+    constructor(props){
+      super(props);
+      this.state = {
+        data: this.props.data
+      };
+    }
+    componentWillMount(){
+      fetch('http://localhost:3000/posts/9/comments.json')
+        .then(response => response.json())
+        .then(inData => this.setState({data: inData.comments }));
+    }
+
+    handleSubmit = (comment) => {
+      comment.user_name = this.props.current_user
+      var newState = this.state.data.concat(comment)
+      this.setState({data: newState});
+    }
+
+    handleDelete(comment){
+      var filteredData = this.state.data.filter((comments) => {
+        return comments.id != comment.id
+      });
+      this.setState({data: filteredData})
+    }
+
+    handleClick(id){
+      var postUrl = this.props.postUrl
+      // var postUrlArray = postUrl.split('/')
+      // var postId = postUrlArray[1]
+      var commentUrl = postUrl.concat(`/${id}`)
+      commentUrl = commentUrl.concat('.json')
+      $.ajax({
+        url: commentUrl,
+        type: "DELETE",
+        dataType: 'json',
+        success: response => {
+          this.handleDelete(response);
+          console.log("item deleted pressed 1")
+        }
+      });
+    }
+
   render() {
     var current_user = this.props.current_user
-    var data= this.props.data.map(comment => {
+    var data= this.state.data.map(comment => {
     return(
         <div key={comment.id}>
         <h3>{comment.user_name} {comment.content}  </h3>
-
-          <p>On { comment.created_at.slice(0,10)} </p>
-        </div>
+        <p>On { comment.created_at.slice(0,10)} </p>
+        <p>{current_user == comment.user_name ? <button onClick={this.handleClick.bind(this, comment.id)}>Delete</button> : null }</p>
+  </div>
       );//
     })
-    return <div>{data}</div>
+    return(
+      <div>
+        <div>{data}</div>
+        <NewCommentForm
+        postUrl={this.props.postUrl}
+        handleSubmit={this.handleSubmit}
+      />
+      </div>
+    )
   }
 };
-//
-// class CommentForm extends React.Component{
-//   render() {
-//     return (
-//       <div className="commentForm">
-//         Party Parrot time. I am a CommentForm.
-//       </div>
-//     );
-//   }
-// };
-//
+
 export default class CommentBox extends React.Component{
   constructor(props) {
     super(props);
@@ -83,17 +109,6 @@ export default class CommentBox extends React.Component{
     };
   }
 
-  componentDidMount(){
-    fetch('http://localhost:3000/posts/9/comments.json')
-      .then(response => response.json())
-      .then(inData => this.setState({data: inData.comments }));
-  }
-
-  handleSubmit = (comment) => {
-    comment.user_name = this.props.current_user
-    var newState = this.state.data.concat(comment)
-    this.setState({data: newState});
-  }
   render() {
     const postUrl = this.props.postUrl
     return (
@@ -101,10 +116,7 @@ export default class CommentBox extends React.Component{
           <CommentList
           data={this.state.data}
           current_user={this.props.current_user}
-          />
-          <NewCommentForm
-          postUrl={postUrl}
-          handleSubmit={this.handleSubmit}
+          postUrl = {this.props.postUrl}
           />
       </div>
     );
