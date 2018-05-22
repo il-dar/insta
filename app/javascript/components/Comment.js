@@ -14,6 +14,9 @@ class NewCommentForm extends React.Component{
       data: { comment: { content: content } },
       dataType: 'json',
       success: response => {
+        response.status = ' New '
+        console.log(response)
+        // var responseWithNew = response.concat(displayWithNew)
         this.props.handleSubmit(response);
       }
     });
@@ -82,16 +85,16 @@ class CommentList extends React.Component{
     var current_user = this.props.current_user
     var data= this.state.data.map(comment => {
     return(
-        <div key={comment.id}>
-        <h3>{comment.user_name} {comment.content}  </h3>
-        <p>On { comment.created_at.slice(0,10)} </p>
-        <p>{current_user == comment.user_name ? <button onClick={this.handleClick.bind(this, comment.id)}>Delete</button> : null }</p>
+        <div className = "comment comment-single" key={comment.id}>
+        <h3 className = "comment comment-content">{comment.user_name} {comment.content} <span className = 'comment comment-status' >{comment.status} </span></h3>
+        <p className = "comment comment-date">On { comment.created_at.slice(0,10)} </p>
+        <p>{current_user == comment.user_name ? <button onClick={this.handleClick.bind(this, comment.id)} className = "delete-button">Delete</button> : null }</p>
   </div>
-      );//
+      );
     })
     return(
       <div>
-        <div>{data}</div>
+        <div className = "comment comment-list">{data}</div>
         <NewCommentForm
         postUrl={this.props.postUrl}
         handleSubmit={this.handleSubmit}
