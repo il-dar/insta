@@ -31,7 +31,7 @@ class NewCommentForm extends React.Component{
   }
 }
 
-class CommentList extends React.Component{
+export default class CommentList extends React.Component{
 
     // componentDidMount(){
     //   this.setState({
@@ -42,13 +42,15 @@ class CommentList extends React.Component{
     constructor(props){
       super(props);
       this.state = {
-        data: this.props.data
+        data: []
       };
     }
-    componentWillMount(){
-      fetch('http://localhost:3000/posts/9/comments.json')
+    componentDidMount(){
+      var postUrl = window.location.pathname
+      fetch(`http://localhost:3000${postUrl}/comments.json`)
         .then(response => response.json())
         .then(inData => this.setState({data: inData.comments }));
+        this.setState(this.state)
     }
 
     handleSubmit = (comment) => {
@@ -80,44 +82,38 @@ class CommentList extends React.Component{
         }
       });
     }
-
   render() {
     var current_user = this.props.current_user
     var data= this.state.data.map(comment => {
     return(
-        <div className = "comment comment-single" key={comment.id}>
-        <h3 className = "comment comment-content">{comment.user_name} {comment.content} <span className = 'comment comment-status' >{comment.status} </span></h3>
-        <p className = "comment comment-date">On { comment.created_at.slice(0,10)} </p>
-        <p>{current_user == comment.user_name ? <button onClick={this.handleClick.bind(this, comment.id)} className = "delete-button">Delete</button> : null }</p>
-  </div>
+        <div className = "comment comment-single media" key={comment.id}>
+          <h3 className = "comment comment-content media-body"><img src={comment.avatar_url} height="50" width="50"></img>{comment.user_name}<span className = 'comment comment-status' >{comment.status}</span></h3>
+          <p className = "comment comment-content">{comment.content}</p>
+          <p className = "comment comment-date">On { comment.created_at.slice(0,10)} </p>
+          <p>{current_user == comment.user_name ? <button onClick={this.handleClick.bind(this, comment.id)} className = "delete-button">Delete</button> : null }</p>
+        </div>
       );
     })
     return(
       <div>
-        <div className = "comment comment-list">{data}</div>
         <NewCommentForm
         postUrl={this.props.postUrl}
         handleSubmit={this.handleSubmit}
-      />
+        />
+        <div className = "comment comment-list">{data}</div>
       </div>
     )
   }
 };
 
-export default class CommentBox extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-    };
-  }
+class CommentBox extends React.Component{
+
 
   render() {
     const postUrl = this.props.postUrl
     return (
       <div className="commentBox">
           <CommentList
-          data={this.state.data}
           current_user={this.props.current_user}
           postUrl = {this.props.postUrl}
           />

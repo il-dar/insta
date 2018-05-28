@@ -1,14 +1,14 @@
 class CommentsController < ApplicationController
   before_action :define_post
   skip_before_action :verify_authenticity_token
+  respond_to :json
 
   def show
-
+    @comments = @post.comments
   end
 
   def index
     @comments = @post.comments
-    # render component: 'Comment', props: {postUrl: post_comments_path(@post), data: 'views/comments.index.json.jbuilder'}
   end
 
   def new
@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
       end
     else
       flash[:alert] = "Comment could not be deleted"
-      format.json { render json: @reservation.errors }
+      format.json { render json: @comment.errors }
     end
   end
 

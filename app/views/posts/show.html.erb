@@ -1,20 +1,27 @@
 
 <div>
-  <a><%= @post.user.user_name %></a>
-    <div>
-      <%= image_tag @post.image, width: 600 %>
+    <!-- <div class="container-fluid"> -->
+      <div class="row">
+        <div class="post-image post-options col-md-6 col-md-push">
+          <a><%= @post.user.user_name %></a>
+          <div class="post-image">
+            <%= image_tag @post.image, :width => "650", :height => "auto", :crop => "scale" %>
+            <%= div_for @post do %>
+            <%=  render partial: "likes/button", locals: {post: @post} %>
+            <% end  %>
+          </div>
+        </div>
+        <%= react_component("application")%>
+        <div class="col-md-6 col-md-pull" id="react">
+          <%= content_tag :div,
+          id: "comments_data",
+          content:  post_comments_path(@post),
+          current_user: current_user.user_name do %>
+          <% end %>
+        </div>
+      <!-- </div> -->
     </div>
-    <%= div_for @post do %>
-    <%=  render partial: "likes/button", locals: {post: @post} %>
-    <% end  %>
-    <%= content_tag :div,
-    id: "comments_data",
-    content:  post_comments_path(@post),
-    current_user: current_user.user_name do %>
-    <% end %>
-    <div class="comments-raw">
-    </div>
-    <%= react_component('application')%>
+
     <!-- , props: {content: post_comments_path(@post), data: @post.comments.to_json}) -->
 
 </div>

@@ -10,23 +10,26 @@
 import React from 'react';
 import { render } from 'react-dom';
 import ReactDOM from 'react-dom'
-import SampleComponent from '../components/SampleComponent';
 import Comment from '../components/Comment'
 import WebpackerReact from 'webpacker-react'
+import regeneratorRuntime from "regenerator-runtime";
 
 
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // console.log('container', container)
-  const node = document.getElementById('comments_data')
-  const current_user = node.getAttribute('current_user')
-  const postUrl = node.getAttribute('content')
-
-  render(
-    <Comment
-    postUrl={postUrl}
-    current_user={current_user}
-    />,
-    document.body.appendChild(document.createElement('div')),
-  )
-});
+    const node = document.getElementById('comments_data')
+    const current_user = node.getAttribute('current_user')
+    const postUrl = node.getAttribute('content')
+    const data = {data: []};
+    fetch(`http://localhost:3000${postUrl}/comments.json`)
+            .then(response => response.json())
+            .then(inData => data.data = inData.comments);
+    render(
+      <Comment
+      postUrl={postUrl}
+      current_user={current_user}
+      data = {data}
+      />,
+      document.getElementById('react').appendChild(document.createElement('div')),
+    )
+  });
