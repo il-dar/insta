@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
   <head>
     <title>Instagram</title>
@@ -6,11 +7,12 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application'%>
     <%= javascript_pack_tag 'application' %>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
-  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <a class="navbar-brand" href="/"><%= fa_icon "camera-retro"  %> | ICON</a>
-  <div class="search">
+  <!-- <div class="search">
     <ul class="nav navbar-nav nav-search">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1"><%= fa_icon "search" %></span>
@@ -19,9 +21,9 @@
         </li>
       </div>
     </ul>
-  </div>
+  </div> -->
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="nav navbar-nav navbar-right">
-
       <li class="nav-item">
         <a class="nav-link nav-icon" href="#"><%= fa_icon "compass"  %></a>
       </li>
@@ -29,43 +31,22 @@
         <a class="nav-link nav-icon" href="#"><%= fa_icon "heart"  %></a>
       </li>
 
-      <li class="nav-item dropdown">
-
-        <a class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenuLink"><%=image_tag current_user.avatar, size: "50x50"%></a>
-          <div class="dropdown">
-            <ul class="dropdown-menu">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-              <li role="presentation" class="divider"></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-            </ul>
-          </div>
-      </li>
-      <li class="nav-item">
-
-      </li>
-
-    </ul>
-    <ul class="hmenu">
-      <% if user_signed_in? %>
-      <li>
-        <%= link_to('Edit registration', edit_user_registration_path) %>
-      </li>
-      <li>
-      <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-      </li>
+                                                    <% if user_signed_in? %>
+      <li class="dropdown">
+        <a class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <%=image_tag current_user.avatar, size: "50x50"%><span class="current-user-nav"><%= current_user.user_name  %></span>
+        </a>
+          <ul class="dropdown-menu">
+                <li><a role="dropdown-item" href="#"><%= link_to('Edit registration', edit_user_registration_path) %></a></li>
+                <li><a role="dropdown-item"  href="#">Something else here</a></li>
+                <li><a role="dropdown-item"  href="#"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></a></li>
+                                                      <% end %>
+          </ul>
+        </li>
+        </div>
     </ul>
 </nav>
 <body>
-  <div>
-    <% else %>
-    <%= link_to('Login', new_user_session_path)  %>
-  </div>
-  <div>
-    <%= link_to('Register', new_user_registration_path)  %>
-    <% end %>
-  </div>
   <% if(@post && @comments) %>
     <%= content_tag :div,
       id: "comments_data",
