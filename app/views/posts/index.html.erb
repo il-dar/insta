@@ -3,14 +3,18 @@
     <% @posts.in_groups_of(3).each do |group| %>
     <div class="row justify-content-md-center">
       <% group.each do |post| %>
+        <%unless post.nil?  %>
       <div class="col-md-4 indeximage" id="grid-container">
-          <img class = "img-square"><%=link_to (image_tag post.image, size: "300x300", :weight => "center"), post_path(post) unless post.nil? %></img>
+        <h1>Kamilla</h1>
+          <img class = "img-square"><%=link_to (image_tag post.image, size: "300x300", :weight => "center"), post_path(post), remote: true, class: 'static-popup-link' %></img>
         <div class="image-caption">
-          <%= post.user.user_name unless post.nil? %>
-          <%= post.caption unless post.nil? %>
+          <%= post.user.user_name %>
+          <%= post.caption %>
+        <% end %>
         </div>
       </div>
     <% end %>
   </div>
   <% end %>
 </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">Loading...</div>

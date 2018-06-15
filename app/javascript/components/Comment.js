@@ -46,8 +46,8 @@ export default class CommentList extends React.Component{
       };
     }
     componentDidMount(){
-      var postUrl = window.location.pathname
-      fetch(`http://localhost:3000${postUrl}/comments.json`)
+      var postUrl = this.props.postUrl;
+      fetch(`http://localhost:3000${postUrl}.json`)
         .then(response => response.json())
         .then(inData => this.setState({data: inData.comments }));
         this.setState(this.state)
