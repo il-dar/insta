@@ -2,8 +2,11 @@
  @import "bootstrap";
  @import "font-awesome";
  @import "partials/modal_post_show";
- @import "partials/like_button"
- @import "partials/login_board"
+ @import "partials/like_button";
+ @import "partials/login_board";
+ @import "partials/base";
+ @import "partials/index";
+
 
  .posts-form {
    font-size: 16px;
@@ -28,6 +31,7 @@
  .nav-icon {
     font-size: 32px;
     margin-left: 5%;
+    color: $color-theme;
 }
 
  .nav-search {

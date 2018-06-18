@@ -1,0 +1,61 @@
+.img-grid{
+  position: absolute;
+}
+
+.img-grid:hover span.text-content{
+  opacity: 1;
+}
+
+span.text-content {
+  background: rgba(0,0,0,0.5);
+  font-size: 0px;
+  color: white;
+  cursor: pointer;
+  display: table;
+  height: $size-grid-square;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: $size-grid-square;
+  opacity: 0;
+    &:hover{
+      -webkit-filter: brightness(70%);
+      -webkit-transition: all 1s ease;
+      -moz-transition: all 1s ease;
+      -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+      transition: all 1s ease;
+      opacity: 1;
+    }
+}
+
+span.text-content p {
+  display: table-cell;
+
+  vertical-align: middle;
+}
+
+span {
+
+}
+
+p.grid-icon {
+  margin:0 auto;
+  font-size: 25px;
+
+
+}
+
+a.static-popup-link {
+  position: relative;
+}
+
+.grid-icon-comment {
+
+  text-align: right;
+}
+
+.fa-heart {
+
+  margin-left: 10px;
+}
