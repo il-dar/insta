@@ -1,0 +1,26 @@
+
+
+<div class="container">
+    <% @posts.in_groups_of(3).each do |group| %>
+    <div class="row justify-content-md-center">
+      <% group.each do |post| %>
+        <%unless post.nil?  %>
+      <div class="col-md-4 indeximage" id="grid-container">
+          <%=link_to post_path(post), remote: true, class: 'static-popup-link' do %>
+                                        <%= image_tag post.image, size: "300x300", :weight => "face", class: "img-grid" %>
+                                          <%= content_tag(:span, class: 'text-content') do%>
+                                            <%= content_tag(:p, fa_icon("comment", text: "#{post.comments.length}"), class: 'grid-icon grid-icon-comment')%>
+                                            <%= content_tag(:p, fa_icon("heart", text: "#{post.likes.length}"), class: 'grid-icon grid-icon-like')%>
+                                        <% end %>
+                                    <% end %>
+        <div class="image-caption">
+          <%= post.user.user_name %>
+          <%= post.caption %>
+        <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">Loading...</div>

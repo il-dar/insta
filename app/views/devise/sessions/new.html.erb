@@ -10,14 +10,9 @@
             <div class="text-center" id="login-form" style="display: block;">
               <div class="form-group">
                   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
                   <%= f.input :email, placeholder: "Email", required: false, autofocus: true, label: false %>
-
-
                   <%= f.input :password, placeholder: "Password", required: false, label: false %>
                   <%= f.input :remember_me, as: :boolean, label: false, :inline_label => true if devise_mapping.rememberable? %>
-                  <div class="form-group text-center">
-                  </div>
               </div>
             </div>
 

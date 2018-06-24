@@ -1,10 +1,10 @@
 $("#myModal").html("<%= j render('/posts/modal') %>");
 
 $('#myModal').modal('show')
-$('#myModal').on('shown.bs.modal', function () {
-  if(document.createEvent){
-    var evt = document.createEvent("MutationEvents");
-    evt.initMutationEvent("DOMContentLoaded", true, true, document, "", "", "", 0);
-    document.dispatchEvent(evt);
-}
-});
+// $('#myModal').on('shown.bs.modal', function () {
+//   if(document.createEvent){
+//     var evt = document.createEvent("MutationEvents");
+//     evt.initMutationEvent("DOMContentLoaded", true, true, document, "", "", "", 0);
+//     document.dispatchEvent(evt);
+// }
+// });

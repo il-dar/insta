@@ -33,18 +33,15 @@ class NewCommentForm extends React.Component{
 
 export default class CommentList extends React.Component{
 
-    // componentDidMount(){
-    //   this.setState({
-    //     data: this.props.data
-    //   })
-    // }
-    // /posts/:post_id/comments/:id
+
     constructor(props){
       super(props);
       this.state = {
         data: []
       };
     }
+
+
     componentDidMount(){
       var postUrl = this.props.postUrl;
       fetch(`http://localhost:3000${postUrl}.json`)
@@ -121,3 +118,9 @@ class CommentBox extends React.Component{
     );
   }
 };
+
+
+$('#myModal').on('hidden.bs.modal', function () {
+
+  ReactDOM.unmountComponentAtNode(document.getElementById('react'))
+});

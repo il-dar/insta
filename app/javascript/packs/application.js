@@ -14,13 +14,13 @@ import Comment from '../components/Comment'
 import WebpackerReact from 'webpacker-react'
 import regeneratorRuntime from "regenerator-runtime";
 
-
-  document.addEventListener("DOMContentLoaded", () => {
+  function loadReact() {
     // console.log('container', container)
       const node = document.getElementById('comments_data')
       const current_user = node.getAttribute('current_user')
       const postUrl = node.getAttribute('content')
       const data = {data: []};
+
 
       render(
         <Comment
@@ -30,4 +30,19 @@ import regeneratorRuntime from "regenerator-runtime";
         />,
         document.getElementById('react').appendChild(document.createElement('div')),
       )
+    };
+
+    function unloadReact(){
+      ReactDOM.unmountComponentAtNode(document.getElementById('react'));
+    }
+
+    $('#myModal').on('shown.bs.modal', function () {
+
+        loadReact();
+
+    });
+
+    $('#myModal').on('hidden.bs.modal', function () {
+      unloadReact();
+      console.log("unloadreact")
     });
