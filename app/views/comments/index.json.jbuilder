@@ -4,5 +4,4 @@ json.comments @comments do |comment|
   json.id comment.id
   json.created_at comment.created_at
   json.avatar_url comment.user.avatar.url
-
 end

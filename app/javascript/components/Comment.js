@@ -4,9 +4,12 @@ import ReactDOM from 'react-dom'
 import WebpackerReact from 'webpacker-react'
 
 class NewCommentForm extends React.Component{
-
+  constructor(props){
+    super(props);
+    this.commentRef = React.createRef();
+  }
   handleClick(){
-    var content = this.refs.comment.value; //this is available because we did bind(this) on the button render
+    var content = this.commentRef.current.value; //this is available because we did bind(this) on the button render
     var postUrl = this.props.postUrl
     $.ajax({
       url: postUrl,
@@ -20,11 +23,12 @@ class NewCommentForm extends React.Component{
         this.props.handleSubmit(response);
       }
     });
+    this.commentRef.current.value = " "
   }
   render(){
     return(
       <div>
-        <input ref='comment' placeholder='Leave a Comment!' />
+        <input ref={this.commentRef} placeholder='Leave a Comment!' />
           <button onClick={this.handleClick.bind(this)}>Submit</button>
       </div>
     )
@@ -118,9 +122,3 @@ class CommentBox extends React.Component{
     );
   }
 };
-
-
-$('#myModal').on('hidden.bs.modal', function () {
-
-  ReactDOM.unmountComponentAtNode(document.getElementById('react'))
-});

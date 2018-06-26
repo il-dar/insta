@@ -14,7 +14,9 @@ import Comment from '../components/Comment'
 import WebpackerReact from 'webpacker-react'
 import regeneratorRuntime from "regenerator-runtime";
 
+
   function loadReact() {
+    console.log("React version: " + React.version);
     // console.log('container', container)
       const node = document.getElementById('comments_data')
       const current_user = node.getAttribute('current_user')
@@ -36,7 +38,7 @@ import regeneratorRuntime from "regenerator-runtime";
       ReactDOM.unmountComponentAtNode(document.getElementById('react'));
     }
 
-    $('#myModal').on('shown.bs.modal', function () {
+    $('#myModal').one('shown.bs.modal', function () {
 
         loadReact();
 
