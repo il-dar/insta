@@ -53,8 +53,13 @@
       current_user: current_user.user_name do %>
     <% end %>
   <% end %>
-  <p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% if notice %>
+  <p class="notice flex-container"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert flex-container"><%= alert %></p>
+<% end %>
+
   <%= yield %>
 </body>
 </html>

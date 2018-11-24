@@ -7,8 +7,10 @@
     <div>
       <%= javascript_pack_tag 'application' %>
         <!-- <div class="container-fluid"> -->
+        <div class="container">
+
           <div class="row">
-            <div class="post-image post-options col-md-6 col-md-push">
+            <div class="post-image post-options col-md-8 col-md-pull">
               <a><%= @post.user.user_name %></a>
               <div class="post-image">
                 <%= image_tag @post.image, :width => "650", :height => "auto", :crop => "scale" %>
@@ -17,14 +19,15 @@
                 <% end  %>
               </div>
             </div>
-            
-            <div class="col-md-6 col-md-pull" id="react">
+            <div class="col-md-4 col-md-push" id="react">
               <%= content_tag :div,
               id: "comments_data",
               content:  post_comments_path(@post),
               current_user: current_user.user_name do %>
               <% end %>
             </div>
+          </div>
+        </div>
           <!-- </div> -->
         </div>
 

@@ -28,8 +28,8 @@ class NewCommentForm extends React.Component{
   render(){
     return(
       <div>
-        <input ref={this.commentRef} placeholder='Leave a Comment!' />
-          <button onClick={this.handleClick.bind(this)}>Submit</button>
+        <input className = "btn btn-default" ref={this.commentRef} placeholder='Leave a Comment!' />
+          <button className = "btn btn-default comment-submit-btn" onClick={this.handleClick.bind(this)}>Submit</button>
       </div>
     )
   }

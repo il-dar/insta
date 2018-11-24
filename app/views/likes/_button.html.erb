@@ -1,9 +1,9 @@
 <% if current_user.liked?(post) %>
   <%=button_to unlike_path(post_id: post.id), remote: true, method: :delete, :class => 'button-like like' do%>
-    <span class="fa fa-heart">  Unlike</span>
+    <span class="fa fa-heart"></span>
   <% end %>
 <% else %>
   <%= button_to like_path(post_id: post.id), remote: true, :class => 'button-like' do%>
-    <span class="fa fa-heart">  Like</span>
+    <span class="fa fa-heart"></span>
   <% end %>
 <% end %>

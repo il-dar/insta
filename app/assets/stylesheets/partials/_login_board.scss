@@ -50,16 +50,34 @@
 	box-shadow: none;
 	border-color: #ccc;
 }
+
+.email-input{
+	margin: 30px 40px;
+	display: block;
+}
+
+label.email{
+	display: block;
+	text-align: left;
+	vertical-align: center;
+	horizontal-align: center;
+}
+
 .btn-login {
-	background-color: #59B2E0;
+	// background-color: #59B2E0;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
-	height: auto;
+	// height: auto;
 	font-weight: normal;
-	padding: 14px 0;
+	// padding: 14px 0;
 	text-transform: uppercase;
-	border-color: #59B2E6;
+	// // border-color: #59B2E6;
+	// box-sizing: border-box;
+	width: 100%;
+	display: block;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 .btn-login:hover,
 .btn-login:focus {
@@ -111,11 +129,17 @@ label{
  // 	transition: all 0.1s linear;
  // }
 div.user_remember_me{
-   // height: 45px;
-   // border: 1px solid #ddd;
-   // font-size: 16px;
-   // -webkit-transition: all 0.1s linear;
-   // -moz-transition: all 0.1s linear;
-   // transition: all 0.1s linear;
-   display: inline-block;
+   height: 60px;
+	 width: 120px;
+   border: 1px solid #ddd;
+   font-size: 12px;
+   -webkit-transition: all 0.1s linear;
+   -moz-transition: all 0.1s linear;
+   transition: all 0.1s linear;
+	 border: none;
+   // display: inline-block;
  }
+
+.checkbox {
+	width: 200px;
+}
