@@ -1,26 +1,19 @@
 .button-like,
 .delete-button {
-  border: 2px solid #8a8a8a;
-  background-color: transparent;
-  text-decoration: none;
-  padding: 1rem;
-  position: relative;
-  vertical-align: middle;
-  text-align: center;
-  display: inline-block;
-  border-radius: 3rem;
-  color: #8a8a8a;
-  transition: all ease 0.4s;
+  border: none;
+  background: none;
+  outline: inherit;
 }
 
-.button-like span {
-  margin-left: 0.5rem;
-}
 
-.button-like .fa,
-.button-like span {
-  transition: all ease 0.4s;
-}
+// .button-like span {
+//   margin-left: 0.5rem;
+// }
+
+// .button-like .fa,
+// .button-like span {
+//   transition: all ease 0.4s;
+// }
 
 .button-like:focus {
   background-color: transparent;

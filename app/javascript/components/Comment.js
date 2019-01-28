@@ -27,7 +27,7 @@ class NewCommentForm extends React.Component{
   }
   render(){
     return(
-      <div>
+      <div className = "post-comment-form">
         <input className = "btn btn-default" ref={this.commentRef} placeholder='Leave a Comment!' />
           <button className = "btn btn-default comment-submit-btn" onClick={this.handleClick.bind(this)}>Submit</button>
       </div>
@@ -85,14 +85,19 @@ export default class CommentList extends React.Component{
     }
   render() {
     var current_user = this.props.current_user
+
     var data= this.state.data.map(comment => {
     return(
-        <div className = "comment comment-single media" key={comment.id}>
-          <h3 className = "comment comment-content media-body"><img src={comment.avatar_url} height="50" width="50"></img>{comment.user_name}<span className = 'comment comment-status' >{comment.status}</span></h3>
-          <p className = "comment comment-content">{comment.content}</p>
-          <p className = "comment comment-date">On { comment.created_at.slice(0,10)} </p>
-          <p>{current_user == comment.user_name ? <button onClick={this.handleClick.bind(this, comment.id)} className = "delete-button">Delete</button> : null }</p>
-        </div>
+        <li className = "comment-li">
+          <a className = "pull-left" href = "#">
+            <img src={comment.avatar_url} height="50" width="50" className = "comment-avatar"></img>
+          </a>
+          <div className = "comment comment-single media" key={comment.id}>
+            <h3 className = "comment comment-content media-body"><span className = "comment-username">{comment.user_name}   </span><span className = 'comment comment-status' >{comment.status}</span><span className = "comment comment-content">{comment.content}</span></h3>
+            <p className = "comment comment-date">On { comment.created_at.slice(0,10)} </p>
+            <p>{current_user == comment.user_name ? <button onClick={this.handleClick.bind(this, comment.id)} className = "delete-button"><i class="fa fa-times"></i></button> : null }<button className = "button-like"><i class="fa fa-heart"></i></button><button className = "button-like"><i class="fa fa-reply"></i></button></p>
+            </div>
+        </li>
       );
     })
     return(
@@ -101,24 +106,24 @@ export default class CommentList extends React.Component{
         postUrl={this.props.postUrl}
         handleSubmit={this.handleSubmit}
         />
-        <div className = "comment comment-list">{data}</div>
+        <ul className = "comment comment-list">{data}</ul>
       </div>
     )
   }
 };
-
-class CommentBox extends React.Component{
-
-
-  render() {
-    const postUrl = this.props.postUrl
-    return (
-      <div className="commentBox">
-          <CommentList
-          current_user={this.props.current_user}
-          postUrl = {this.props.postUrl}
-          />
-      </div>
-    );
-  }
-};
+//
+// class CommentMap extends React.Component{
+//
+//
+//   render() {
+//     const postUrl = this.props.postUrl
+//     return (
+//       <div className="commentBox">
+//           <CommentList
+//           current_user={this.props.current_user}
+//           postUrl = {this.props.postUrl}
+//           />
+//       </div>
+//     );
+//   }
+// };

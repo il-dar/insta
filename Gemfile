@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+ruby '1.9.3'ggit
+
 gem 'record_tag_helper', '~> 1.0'
 gem 'webpacker-react', "~> 0.3.2"
 gem "font-awesome-rails"
