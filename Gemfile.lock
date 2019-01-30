@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/makandra/katapult
+  revision: 8c5a12823719fd183cb454fb0c7f0b8727d16b7d
+  specs:
+    katapult (0.5.0)
+      rails (= 5.1.4)
+      spring
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -206,6 +214,7 @@ DEPENDENCIES
   devise
   font-awesome-rails
   jbuilder (~> 2.5)
+  katapult!
   listen (>= 3.0.5, < 3.2)
   paperclip (~> 5.2.1)
   pg (~> 0.18)
@@ -222,5 +231,8 @@ DEPENDENCIES
   webpacker
   webpacker-react (~> 0.3.2)
 
+RUBY VERSION
+   ruby 2.4.3p205
+
 BUNDLED WITH
-   1.16.0
+   1.16.2
