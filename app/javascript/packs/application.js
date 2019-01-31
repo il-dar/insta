@@ -7,44 +7,4 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-import React from 'react';
-import { render } from 'react-dom';
-import ReactDOM from 'react-dom'
-import Comment from '../components/Comment'
-import WebpackerReact from 'webpacker-react'
-import regeneratorRuntime from "regenerator-runtime";
-
-
-  function loadReact() {
-    console.log("React version: " + React.version);
-    // console.log('container', container)
-      const node = document.getElementById('comments_data')
-      const current_user = node.getAttribute('current_user')
-      const postUrl = node.getAttribute('content')
-      const data = {data: []};
-
-
-      render(
-        <Comment
-        postUrl={postUrl}
-        current_user={current_user}
-        data = {data}
-        />,
-        document.getElementById('react').appendChild(document.createElement('div')),
-      )
-    };
-
-    function unloadReact(){
-      ReactDOM.unmountComponentAtNode(document.getElementById('react'));
-    }
-
-    $('#myModal').one('shown.bs.modal', function () {
-
-        loadReact();
-
-    });
-
-    $('#myModal').on('hidden.bs.modal', function () {
-      unloadReact();
-      console.log("unloadreact")
-    });
+console.log('Hello World from Webpacker')

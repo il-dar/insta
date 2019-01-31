@@ -2,7 +2,7 @@
   "name": "instagram",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.2.2",
+    "@rails/webpacker": "^3.5.5",
     "babel-preset-react": "^6.24.1",
     "jquery": "^3.3.1",
     "prop-types": "^15.6.0",
@@ -11,6 +11,7 @@
     "webpacker-react": "^0.3.2"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.11.1"
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "2.10.1"
   }
 }
