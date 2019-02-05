@@ -26,7 +26,8 @@ gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScrip sudo apt-get install --reinstall audio-recordet. Read more: https://github.com/rails/webpacker
 
 gem 'katapult', :git => 'https://github.com/makandra/katapult'
-gem 'webpacker'
+gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -47,6 +48,8 @@ gem 'capistrano', '~> 3.7', '>= 3.7.1'
 gem 'capistrano-rails', '~> 1.2'
 gem 'capistrano3-puma'
 gem 'capistrano-rvm'
+gem 'capistrano-npm'
+
 
 #  rbenv capistrano
  gem 'capistrano-rbenv', '~> 2.1'
