@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: instaphots
-  username: postgres
-  password: <%= ENV['INSTAGRAM_DATABASE_PASSWORD'] %>
+  database: insta
+  host: localhost	
+  username: insta
+  password: insta
